@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cf.sqlTest.dao.mapper.UipsqlTestDeviceMapper">
+
+    <resultMap id="uipsqlTestDeviceMap" type="com.cf.sqlTest.dao.po.UipsqlTestDevicePO">
+        <result column="uip_sqlTest_device_id" property="uipsqlTestDeviceId"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="vin" property="vin"/>
+        <result column="car_type" property="carType"/>
+        <result column="create_tm" property="createTm"/>
+    </resultMap>
+</mapper>
+

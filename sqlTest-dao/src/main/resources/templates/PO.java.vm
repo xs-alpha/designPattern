@@ -1,0 +1,37 @@
+package ${packageName}.${moduleName}.dao.po;
+    #set($list=["id","createBy","createTime", "updateBy", "updateTime", "deleteFlag"])
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+
+import java.util.Date;
+
+/**
+ * @author ${author}
+ * @date ${datetime}
+ *
+ * @description ${comment}
+ */
+@Data
+@TableName("${tableName}")
+@Accessors(chain = true)
+public class ${upperClassName}PO  {
+
+#foreach ($column in $columns)
+##    排除父类字段
+    #if($list.contains($column.javaLowerAttrName))
+    #else
+
+    /**
+     * $column.column_comment
+     */
+    #if(($column.column_key)=="PRI")
+    @TableId(value = "$column.column_name", type = #if(($column.column_key)=="PRI") IdType.INPUT #else IdType.AUTO #end)
+    #end
+    private $column.javaAttrType $column.javaLowerAttrName;
+    #end
+#end
+}

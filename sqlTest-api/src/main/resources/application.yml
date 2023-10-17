@@ -1,0 +1,27 @@
+server:
+  port: 9090
+
+spring:
+  profiles:
+    active: dev
+  main:
+    # 解决Bean重复定义问题
+    allow-bean-definition-overriding: true
+    # date统一返回时间戳
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapping/*.xml
+  typeAliasesPackage: com.cf.sqlTest.dao.po
+  config-location: classpath:/mybatis-config.xml
+  global-config:
+    sql-parser-cache: true
+    refresh: true
+
+
+logging:
+  level:
+    org.redisson.connection.DNSMonitor: error
+    org.apache.http.wire: error    

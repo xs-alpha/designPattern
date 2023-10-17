@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.cf</groupId>
+	<artifactId>sqlTest</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<modules>
+		<module>sqlTest-facade</module>
+		<module>sqlTest-dao</module>
+		<module>sqlTest-services</module>
+		<module>sqlTest-api</module>
+	</modules>
+	<name>sqlTest</name>
+
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.1.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<mysql.version>8.0.18</mysql.version>
+
+		<mybaties.version>3.5.0</mybaties.version>
+		<artemis-http-client.version>1.1.6</artemis-http-client.version>
+		<dingtalk.version>1.4.10</dingtalk.version>
+
+		<!--暂时这个版本多数据源才能连上SqlServer-->
+		<druid.version>1.1.10</druid.version>
+
+		<validation-api.version>2.0.1.Final</validation-api.version>
+		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+
+		<fastjson.version>1.2.83</fastjson.version>
+		<lombok.version>1.18.24</lombok.version>
+		<httpclient.version>4.5.12</httpclient.version>
+		<hutool.version>5.7.20</hutool.version>
+		<guava.version>28.0-jre</guava.version>
+		<commons-io.version>2.11.0</commons-io.version>
+		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+		<springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+		<swagger-mg-ui.version>1.0.6</swagger-mg-ui.version>
+		<dozer.version>5.5.1</dozer.version>
+		<mybatis-plus-generator.version>3.5.1</mybatis-plus-generator.version>
+		<knife4j.verion>2.0.6</knife4j.verion>
+		<velocity.version>2.2</velocity.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.google.protobuf</groupId>
+						<artifactId>protobuf-java</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis-plus-generator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybaties.version}</version>
+			</dependency>
+			<!-- bean 转换 -->
+			<dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
+				<version>${dozer.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+			<!--swagger begin-->
+			<dependency>
+				<groupId>com.zyplayer</groupId>
+				<artifactId>swagger-mg-ui</artifactId>
+				<version>${swagger-mg-ui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox-swagger2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox-swagger-ui.version}</version>
+			</dependency>
+			<!--swagger end-->
+			<dependency>
+				<groupId>com.github.xiaoymin</groupId>
+				<artifactId>knife4j-spring-boot-starter</artifactId>
+				<version>${knife4j.verion}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-engine-core</artifactId>
+				<version>${velocity.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.google.protobuf</groupId>
+						<artifactId>protobuf-java</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- alibaba的druid数据库连接池 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid-spring-boot-starter</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybaties.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-core</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+			<!--validation start-->
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${validation-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
+			</dependency>
+			<!--validation end-->
+
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>dingtalk</artifactId>
+				<version>${dingtalk.version}</version>
+			</dependency>
+
+<!--			aliyun sqlTest相关-->
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>tea-console</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>tea-util</artifactId>
+				<version>0.2.9</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>iot20180120</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>tea-openapi</artifactId>
+				<version>0.0.8</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>darabonba-env</artifactId>
+				<version>0.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>darabonba-number</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>tea</artifactId>
+				<version>[1.0.3, 2.0.0)</version>
+			</dependency>
+			<!--查询设备信息-->
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>iot20180120</artifactId>
+				<version>3.0.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+				<version>3.5.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<skipTests>true</skipTests>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

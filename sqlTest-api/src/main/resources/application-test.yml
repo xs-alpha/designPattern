@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 2
+      min-idle: 1
+      max-active: 10
+      max-wait: 10000
+      time-between-eviction-runsMillis: 60000
+      min-evictable-idle-timeMillis: 300000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat
+  #        connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  #        use-global-data-source-stat: true
+#
+#  redis:
+#    host: 192.168.1.147
+#    port: 6379
+#    database: 0
+#    password: Cfmoto@123
+#    timeout: 3000
+#    jedis:
+#      pool:
+#        max-idle: 300
+#        max-wait: 1000ms
+#        max-total: 500
+#        test-on-borrow: true
+#        test-on-return: true
+
+#jwt 秘钥
+jwt:
+  secret: 56ac34bd8e133f4e4344c8b784957aa6ffe6552dd92
+

@@ -1,0 +1,19 @@
+package ${packageName}.${moduleName}.services.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import ${packageName}.${moduleName}.dao.po.${upperClassName}PO;
+import ${packageName}.${moduleName}.dao.mapper.${upperClassName}Mapper;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author ${author}
+ * @date ${datetime}
+ *
+ * @description ${comment}
+ */
+@Service
+public class ${upperClassName}Service extends ServiceImpl<${upperClassName}Mapper, ${upperClassName}PO>  implements IService<${upperClassName}PO> {
+
+}
+
