@@ -1,4 +1,4 @@
-package com.cf.sqlTest.api.designPatterns.factoryMethodMode;
+package com.cf.sqlTest.api.designPatterns.factoryMethodMode.operate;
 
 /**
  * @author: lpy
