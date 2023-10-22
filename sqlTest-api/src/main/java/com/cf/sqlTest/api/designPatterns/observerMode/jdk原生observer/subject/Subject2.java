@@ -1,4 +1,4 @@
-package com.cf.sqlTest.api.designPatterns.observerMode.jdk原生observer;
+package com.cf.sqlTest.api.designPatterns.observerMode.jdk原生observer.subject;
 
 import lombok.Data;
 
