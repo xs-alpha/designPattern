@@ -22,7 +22,7 @@ public class DataAccess {
     }
 
     public static Object getInstance(String className){
-        Object o = null;
+        Object o ;
         try {
             o = Class.forName(className).getDeclaredConstructor().newInstance();
         }catch (Exception e){
