@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.ChinesePlug</node>
+    <node x="206.0" y="0.0">com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.ForeignSocket</node>
+    <node x="95.46527777777777" y="108.0">com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.SocketAdapter</node>
+    <node x="217.25" y="302.0">com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.Client</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.Client" target="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.ForeignSocket">
+      <point x="58.125" y="-29.0" />
+      <point x="352.875" y="277.0" />
+      <point x="354.2638888888889" y="277.0" />
+      <point x="354.2638888888889" y="83.0" />
+      <point x="379.25" y="83.0" />
+      <point x="74.25" y="29.0" />
+    </edge>
+    <edge source="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.Client" target="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.SocketAdapter">
+      <point x="-58.125" y="-29.0" />
+      <point x="236.625" y="277.0" />
+      <point x="152.21527777777777" y="277.0" />
+      <point x="-56.75" y="72.0" />
+    </edge>
+    <edge source="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.SocketAdapter" target="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.ChinesePlug">
+      <point x="-75.66666666666669" y="-72.0" />
+      <point x="133.2986111111111" y="83.0" />
+      <point x="93.0" y="83.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+    <edge source="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.SocketAdapter" target="com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.ForeignSocket">
+      <point x="75.66666666666669" y="-72.0" />
+      <point x="284.63194444444446" y="83.0" />
+      <point x="280.25" y="83.0" />
+      <point x="-24.75" y="29.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="202.0" y="180.0" />
+  <SelectedNodes>
+    <node>com.cf.sqlTest.api.designPatterns.adapterMode.类版被适配者.SocketAdapter</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
