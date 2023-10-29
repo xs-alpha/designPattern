@@ -102,6 +102,22 @@
 			<artifactId>knife4j-spring-boot-starter</artifactId>
 			<version>${knife4j.verion}</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+		</dependency>
+		<!-- elasticsearch 的客户端 -->
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+		</dependency>
+		<!-- elasticsearch 依赖 2.x 的 log4j -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
