@@ -1,0 +1,76 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   EnumInstance.java
+
+package com.cf.sqlTest.api.designPatterns.singletonMode;
+
+import java.io.*;
+import java.lang.reflect.Constructor;
+
+public final class EnumInstance extends Enum
+{
+
+    public static EnumInstance[] values()
+    {
+        return (EnumInstance[])$VALUES.clone();
+    }
+
+    public static EnumInstance valueOf(String name)
+    {
+        return (EnumInstance)Enum.valueOf(com/cf/sqlTest/api/designPatterns/singletonMode/EnumInstance, name);
+    }
+
+    private EnumInstance(String s, int i)
+    {
+        super(s, i);
+    }
+
+    public Object getData()
+    {
+        return data;
+    }
+
+    public void setData(Object data)
+    {
+        this.data = data;
+    }
+
+    public static EnumInstance getInstance()
+    {
+        return INSTANCE;
+    }
+
+    public static void main(String args[])
+        throws Exception
+    {
+        EnumInstance instance = getInstance();
+        instance.setData(new Object());
+        String filename = "singleton_file";
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+        oos.writeObject(instance);
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(filename)));
+        EnumInstance enumInstance = (EnumInstance)ois.readObject();
+        System.out.println(enumInstance.getData().hashCode() == instance.getData().hashCode());
+        Class enumInstanceClass = com/cf/sqlTest/api/designPatterns/singletonMode/EnumInstance;
+        Constructor declaredConstructor = enumInstanceClass.getDeclaredConstructor(new Class[] {
+            java/lang/String, Integer.TYPE
+        });
+        declaredConstructor.setAccessible(true);
+        declaredConstructor.newInstance(new Object[] {
+            "xiaosheng", Integer.valueOf(666)
+        });
+    }
+
+    public static final EnumInstance INSTANCE;
+    private Object data;
+    private static final EnumInstance $VALUES[];
+
+    static 
+    {
+        INSTANCE = new EnumInstance("INSTANCE", 0);
+        $VALUES = (new EnumInstance[] {
+            INSTANCE
+        });
+    }
+}
