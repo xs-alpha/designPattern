@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
 
 /**
  * @author: lpy
@@ -42,8 +41,8 @@ public class TestController {
     }
 
     public static void main(String[] args) {
-        String a = "aaaa&bbb";
-        String[] split = a.split("&");
-        System.out.println(Arrays.toString(split));
+        // 多线程debug
+
+
     }
 }
