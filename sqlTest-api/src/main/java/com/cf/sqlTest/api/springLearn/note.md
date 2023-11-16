@@ -1,0 +1,66 @@
+# spring简化开发的四个基本策略
+
+- 基于pojo的轻量级和最小侵入性编程
+
+- 通过依赖注入和面向接口松耦合
+
+- 基于切面和惯性进行声明式编程
+
+- 通过切面和模板减少样板式代码
+
+# spring编程思想
+
+![](https://image.devilwst.top/imgs/2023/11/2146ea2c8608568d.png)
+
+![](https://image.devilwst.top/imgs/2023/11/a12c09fe5344a131.png)
+![](https://image.devilwst.top/imgs/2023/11/e8f7c6e4403769b3.png)
+![](https://image.devilwst.top/imgs/2023/11/4cd00567ab2da32e.png)
+
+![](https://image.devilwst.top/imgs/2023/11/27bb8a4cf5155900.png)
+![](https://image.devilwst.top/imgs/2023/11/eb2351374c3ade19.png)
+![](https://image.devilwst.top/imgs/2023/11/7462e61a6a39af1c.png)
+
+# spring注解
+![](https://image.devilwst.top/imgs/2023/11/d8c309f8f60bc33e.png)
+@Configuration @Bean默认是类名首字母小写，其次是取方法名， 最后优先取Bean注解的value
+@Scope prototype:原型 单例， singleton：单例  ，request:主要应用于web模块，同一次请求只创建一个实例， session：主要应用于web模块，同一个session只创建一个对象
+@Lazy 默认是非延迟加载的，加了@Lazy注解就延迟加载,默认容器启动时不创建对象，调用对象的功能的时候才创建，但这里有一个坑，延时加载懒加载只针对单例Bean起作用,对于多例Bean反正都是用到的时候才记载
+@Conditional Spring4开始提供，他的作用是按照一定的条件进行判断，满足条件给容器注册Bean
+@Import 导入外部资源,可以手动指定一个第三方资源加到ioc容器中
+
+
+给IoC容器注册Bean的方式
+1.@Bean直接导入单个类
+2.@ComponentScan默认扫描（@Controller,@Service,@Repository,@Component）
+3.@Import 快速给容器导入Bean的一种方式 a.@Import直接参数导入 b.实现ImportSelector接口，自定义规则实现 c.实现ImportBeanDefinitionRegistrar 获得BeanDefinitionRegistry可以手动直接往IoC容器中注入值。
+4.FactoryBean 把需要注册的对象封装为FactoryBean a.负责将Bean注册到IoC的Bean， b.BeanFactory从容器中获得Bean对象
+
+对Bean声明周期的监控
+1.配置@Bean的参数
+2.分别实现InitializingBean和DisposableBean接口
+3.使用@PostConstruct和@PreDestroy注解
+4.自己写一个类，实现BeanPostProcessor接口
+
+![](https://image.devilwst.top/imgs/2023/11/3ebd5b4caceef65e.png)
+
+@Value()支持的类型
+1.基本数据类型
+2.支持spring EL表达式@Value("#{}")   
+3.@Value("${}")
+
+@Autowired:默认按类型装配，如果想使用按名称装配，可以结合@Qualifier注解一起使用
+@Resource:默认按名称装配，当找不到与名称匹配的bean才会按类型装配
+
+
+![](https://image.devilwst.top/imgs/2023/11/4a1b22ede8f61525.png)
+
+
+# spring
+ApplicationContext简单的理解为他就是一个工厂类
+getBean()从IOC容器中去获取一个实例的方法
+
+在调用servlet init()方法时就要初始化ApplicationContext
+
+spring终发生DI由getBean()触发
+1.调用getBean（）创建对象
+2.立即就会发生DI

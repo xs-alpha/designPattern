@@ -20,6 +20,11 @@
 			<artifactId>sqlTest-dao</artifactId>
 			<version>${parent.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty</artifactId>
+            <version>7.0.0.pre5</version>
+        </dependency>
 		<dependency>
 			<groupId>com.cf</groupId>
 			<artifactId>sqlTest-facade</artifactId>
