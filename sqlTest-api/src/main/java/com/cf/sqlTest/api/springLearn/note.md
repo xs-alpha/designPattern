@@ -56,6 +56,8 @@
 
 
 # spring
+![](https://image.devilwst.top/imgs/2023/11/0d58a2fd7192c2ae.png)
+
 ApplicationContext简单的理解为他就是一个工厂类
 getBean()从IOC容器中去获取一个实例的方法
 
@@ -64,3 +66,15 @@ getBean()从IOC容器中去获取一个实例的方法
 spring终发生DI由getBean()触发
 1.调用getBean（）创建对象
 2.立即就会发生DI
+
+1.调用servlet init()方法
+    创建ApplicationContext
+    BeanDefinitionReader读取配置文件和解析配置文件
+2.读取配置文件（properties, xml,yml）
+3.扫描相关的类  配置文件到了内存里统一都是BeanDefinition  (所有的配置文件在内存里的体现形式就是BeanDefinition)
+4.初始化IoC容器，并且实例化对象   BeanWrapper
+    ApplicationContext.getBean()去完成对象的实例化和依赖注入，对象最终会变成BeanWrapper包装起来
+5.完成DI注入
+
+![](https://image.devilwst.top/imgs/2023/11/22b91f7f14561d23.png)
+![](https://image.devilwst.top/imgs/2023/11/1df3c248c1513690.png)

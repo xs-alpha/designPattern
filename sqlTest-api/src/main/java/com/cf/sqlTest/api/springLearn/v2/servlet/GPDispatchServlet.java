@@ -1,6 +1,6 @@
 package com.cf.sqlTest.api.springLearn.v2.servlet;
 
-import com.cf.sqlTest.api.springLearn.v2.annotation.*;
+import com.cf.sqlTest.api.springLearn.annotation.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

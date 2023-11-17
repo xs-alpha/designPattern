@@ -1,4 +1,4 @@
-package com.cf.sqlTest.api.springLearn.v2.annotation;
+package com.cf.sqlTest.api.springLearn.annotation;
 
 /**
  * @author: lpy
