@@ -1,9 +1,11 @@
 package com.cf.sqlTest.api.springLearn.manul_spring.webmvc.servlet;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.lang.reflect.Method;
+import java.util.regex.Pattern;
 
 /**
  * @author: lpy
@@ -11,9 +13,10 @@ import java.lang.reflect.Method;
  */
 @Data
 @Accessors(chain = true)
+@AllArgsConstructor
 public class XSHandlerMapping {
     // url
-    private String url;
+    private Pattern url;
 
     // 对应的Method
     private Method method;

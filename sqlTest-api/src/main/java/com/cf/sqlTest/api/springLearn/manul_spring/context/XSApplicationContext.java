@@ -71,6 +71,8 @@ public class XSApplicationContext {
         XSBeanWrapper beanWrapper = new XSBeanWrapper(instance);
         // 4.保存到IoC容器
         factoryBeanInstanceCache.put(beanName,beanWrapper);
+        // todo:从这里接入AOP
+
         // 5.执行依赖注入
         populateBean(beanName,definition,beanWrapper);
         return beanWrapper.getWrapperInstance();
