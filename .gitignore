@@ -22,7 +22,6 @@ logs/
 config/DoveClient.conf
 config/*.toml
 !config/*.schema.toml
-config
 
 ### NetBeans ###
 /nbproject/private/

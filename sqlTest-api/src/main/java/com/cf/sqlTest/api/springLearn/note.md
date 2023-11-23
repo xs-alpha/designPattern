@@ -78,3 +78,7 @@ spring终发生DI由getBean()触发
 
 ![](https://image.devilwst.top/imgs/2023/11/22b91f7f14561d23.png)
 ![](https://image.devilwst.top/imgs/2023/11/1df3c248c1513690.png)
+
+
+## spring AOP
+![](https://image.devilwst.top/imgs/2023/11/2953137d08707191.png)

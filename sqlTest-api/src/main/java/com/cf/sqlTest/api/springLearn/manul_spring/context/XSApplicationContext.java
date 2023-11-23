@@ -3,6 +3,9 @@ package com.cf.sqlTest.api.springLearn.manul_spring.context;
 import com.cf.sqlTest.api.springLearn.annotation.GPAutoWired;
 import com.cf.sqlTest.api.springLearn.annotation.GPController;
 import com.cf.sqlTest.api.springLearn.annotation.GPService;
+import com.cf.sqlTest.api.springLearn.manul_spring.aop.XSJdkDynamicAopProxy;
+import com.cf.sqlTest.api.springLearn.manul_spring.aop.config.XSConfig;
+import com.cf.sqlTest.api.springLearn.manul_spring.aop.support.XSAdvisedSupport;
 import com.cf.sqlTest.api.springLearn.manul_spring.beans.XSBeanWrapper;
 import com.cf.sqlTest.api.springLearn.manul_spring.beans.config.XSBeanDefinition;
 import com.cf.sqlTest.api.springLearn.manul_spring.beans.support.XSBeanDefinitionReader;
@@ -124,6 +127,23 @@ public class XSApplicationContext {
                 Class<?> clazz = Class.forName(className);
 
                 instance = clazz.newInstance();
+
+                // ------------------------------Aop开始--------------------------------
+                // 1. 加载AOP配置文件
+
+                // 如果满足条件，就直接返回Proxy对象
+                XSAdvisedSupport config = instantionAopConfig(definition);
+                config.setTargetClass(clazz);
+                config.setTarget(instance);
+
+                // 判断规则，要不要生成代理类，如果要就覆盖原生对象
+                // 如果不要就不做任何处理,返回原生对象
+                if (config.pointCutMatch()){
+                    instance = new XSJdkDynamicAopProxy().getProxy();
+                }
+
+                // ------------------------------Aop结束--------------------------------
+
                 this.factoryBeanObjectCache.put(beanName, instance);
             }
 
@@ -132,6 +152,18 @@ public class XSApplicationContext {
         }
         return instance;
     }
+
+    private XSAdvisedSupport instantionAopConfig(XSBeanDefinition definition) {
+        XSConfig config = new XSConfig();
+        config.setPointCut(this.beanDefinitionReader.getConfig().getProperty("pointCut"));
+        config.setPointCut(this.beanDefinitionReader.getConfig().getProperty("aspectClass"));
+        config.setPointCut(this.beanDefinitionReader.getConfig().getProperty("aspectBefore"));
+        config.setPointCut(this.beanDefinitionReader.getConfig().getProperty("aspectAfter"));
+        config.setPointCut(this.beanDefinitionReader.getConfig().getProperty("aspectAfterThrow"));
+        config.setPointCut(this.beanDefinitionReader.getConfig().getProperty("aspectAfterThrowingName"));
+        return new XSAdvisedSupport(config);
+    }
+
 
     public Object getBean(Class beanClass){
         return getBean(beanClass.getName());

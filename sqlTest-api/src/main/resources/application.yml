@@ -24,4 +24,17 @@ mybatis-plus:
 logging:
   level:
     org.redisson.connection.DNSMonitor: error
-    org.apache.http.wire: error    
+    org.apache.http.wire: error
+
+# 切面表达式expression
+pointCut: public .* com.cf.sqlTest.service..*Service..*(.*)
+# 切面类
+aspectClass: com.cf.sqlTest.aspect.LogAspect
+# 前置通知回调方法
+aspectBefore: before
+# 后置通知回调方法
+aspectAfter: after
+# 异常通知回调方法
+aspectAfterThrow: afterThrowing
+# 异常类型捕捉
+aspectAfterThrowingName: java.lang.Exception
