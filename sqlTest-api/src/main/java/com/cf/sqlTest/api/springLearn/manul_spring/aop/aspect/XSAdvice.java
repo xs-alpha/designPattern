@@ -18,4 +18,8 @@ public class XSAdvice {
         this.aspect = aspect;
         this.adviceMethod = adviceMethod;
     }
+
+    public void invoke() {
+
+    }
 }

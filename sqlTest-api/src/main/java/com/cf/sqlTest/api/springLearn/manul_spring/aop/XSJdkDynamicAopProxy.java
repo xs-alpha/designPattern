@@ -4,7 +4,9 @@ import com.cf.sqlTest.api.springLearn.manul_spring.aop.aspect.XSAdvice;
 import com.cf.sqlTest.api.springLearn.manul_spring.aop.support.XSAdvisedSupport;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Map;
 
 /**
@@ -17,20 +19,31 @@ public class XSJdkDynamicAopProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Map<String, XSAdvice> advices =  config.getAdvices(method,null);
+        Object returnValue;
         try {
-            advices.get("before").invoke();
+            invokeAdvice(advices.get("before"));
 
-            method.invoke(null, args);
+            returnValue = method.invoke(this.config.getTargetClass(), args);
 
-            advices.get("after").invoke();
+            invokeAdvice(advices.get("after"));
         }catch (Exception e){
             advices.get("afterThrow").invoke();
+            throw e;
         }
 
-        return null;
+        return returnValue;
     }
 
     public Object getProxy() {
-        return null;
+        return Proxy.newProxyInstance(this.getClass().getClassLoader(),this.config.getTargetClass().getInterfaces(), this);
+    }
+    public void invokeAdvice(XSAdvice advice){
+        try {
+            advice.getAdviceMethod().invoke(advice.getAspect());
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }
