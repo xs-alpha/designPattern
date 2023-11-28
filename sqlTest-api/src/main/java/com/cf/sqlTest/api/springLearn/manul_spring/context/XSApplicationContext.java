@@ -9,6 +9,8 @@ import com.cf.sqlTest.api.springLearn.manul_spring.aop.support.XSAdvisedSupport;
 import com.cf.sqlTest.api.springLearn.manul_spring.beans.XSBeanWrapper;
 import com.cf.sqlTest.api.springLearn.manul_spring.beans.config.XSBeanDefinition;
 import com.cf.sqlTest.api.springLearn.manul_spring.beans.support.XSBeanDefinitionReader;
+import com.cf.sqlTest.api.springLearn.manul_spring.beans.support.XSDefaultListableBeanFactory;
+import com.cf.sqlTest.api.springLearn.manul_spring.core.XSBeanFactory;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -19,8 +21,7 @@ import java.util.Map;
  * @author: lpy
  * @Date: 2023/11/16
  */
-public class XSApplicationContext {
-    private Map<String, XSBeanDefinition> beanDefinitionMap = new HashMap<>();
+public class XSApplicationContext implements XSBeanFactory {
     private XSBeanDefinitionReader beanDefinitionReader;
 
     private Map<String, XSBeanWrapper> factoryBeanInstanceCache = new HashMap<>();
@@ -37,7 +38,7 @@ public class XSApplicationContext {
 
         // 3.把BeanDefinition缓存起来
         try {
-            doRegistBeanDefinition(beanDefinitions);
+            XSDefaultListableBeanFactory.doRegistBeanDefinition(beanDefinitions);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,26 +49,18 @@ public class XSApplicationContext {
     private void doAutoWired() {
         // 调用getBean()
         // 这一步所有的bean并没有真正的实例化，还只是配置阶段
-        for (Map.Entry<String, XSBeanDefinition> beanDefinitionEntry : this.beanDefinitionMap.entrySet()) {
+        for (Map.Entry<String, XSBeanDefinition> beanDefinitionEntry : XSDefaultListableBeanFactory.beanDefinitionMap.entrySet()) {
             String beanName = beanDefinitionEntry.getKey();
             getBean(beanName);
         }
     }
 
-    private void doRegistBeanDefinition(List<XSBeanDefinition> beanDefinitions) throws Exception {
-        for (XSBeanDefinition beanDefinition : beanDefinitions) {
-            if (this.beanDefinitionMap.containsKey(beanDefinition.getFactoryBeanName())){
-                throw new Exception("the "+beanDefinition.getFactoryBeanName()+" exists");
-            }
-            beanDefinitionMap.put(beanDefinition.getFactoryBeanName(),beanDefinition);
-            beanDefinitionMap.put(beanDefinition.getBeanClassName(),beanDefinition);
-        }
-    }
 
     // bean的实例化，DI是从这个方法开始的
+    @Override
     public Object getBean(String beanName){
         // 1.先拿到BeanDefinition配置信息
-        XSBeanDefinition definition = this.beanDefinitionMap.get(beanName);
+        XSBeanDefinition definition = XSDefaultListableBeanFactory.beanDefinitionMap.get(beanName);
         // 2.反射实例化newInstance()
         Object instance = instantiateBean(beanName,definition);
         // 3.封装成BeanWrapper
@@ -165,15 +158,16 @@ public class XSApplicationContext {
     }
 
 
+    @Override
     public Object getBean(Class beanClass){
         return getBean(beanClass.getName());
     }
 
     public int getBeanDefinitionCount() {
-        return this.beanDefinitionMap.size();
+        return XSDefaultListableBeanFactory.beanDefinitionMap.size();
     }
 
     public String[] getBeanDefinitionNames() {
-        return this.beanDefinitionMap.keySet().toArray(new String[this.beanDefinitionMap.size()]);
+        return XSDefaultListableBeanFactory.beanDefinitionMap.keySet().toArray(new String[XSDefaultListableBeanFactory.beanDefinitionMap.size()]);
     }
 }

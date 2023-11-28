@@ -82,3 +82,21 @@ spring终发生DI由getBean()触发
 
 ## spring AOP
 ![](https://image.devilwst.top/imgs/2023/11/2953137d08707191.png)
+
+##　回顾
+![](https://image.devilwst.top/imgs/2023/11/667c8b0d37eeded8.png)
+
+![](https://image.devilwst.top/imgs/2023/11/0f3db48e760c21e3.png)
+
+DI从getBean方法开始，因为spring默认是懒加载
+
+实例化有两种情况：1.目标类配置了AOP,实例化对象代理类 2.目标类没有配置AOP,实例化原生对象
+
+BeanWrapper:统一一个对外访问对象的入口
+扩展一些功能，缓存一些配置信息
+
+![](https://image.devilwst.top/imgs/2023/11/bf1a403ec492c01f.png)
+
+instantiateBean() 由这个方法发起实例化对象的动作
+
+populateBean() 由这个方法发起依赖注入动作
