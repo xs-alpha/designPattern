@@ -88,6 +88,9 @@ spring终发生DI由getBean()触发
 
 ![](https://image.devilwst.top/imgs/2023/11/0f3db48e760c21e3.png)
 
+
+
+# DI
 DI从getBean方法开始，因为spring默认是懒加载
 
 实例化有两种情况：1.目标类配置了AOP,实例化对象代理类 2.目标类没有配置AOP,实例化原生对象
@@ -100,4 +103,41 @@ BeanWrapper:统一一个对外访问对象的入口
 instantiateBean() 由这个方法发起实例化对象的动作
 
 populateBean() 由这个方法发起依赖注入动作
+
+getBean()->doGetBean()->createBean()->doCreateBean()->
+createBeanInstance(): 用反射创建了个对象示例 封装成BeanWrapper
+
+populateBean() : 根据beanName beanDefinition BeanWrapper找到需要赋值的属性 
+                把需要赋值的属性封装成了一个集合PropertyValues , 集合的元素PropertyValue
+                
+applyPropertyValues(): 循环propertyValue() 挨个调用BeanWrapper的setValue()方法，用反射调用setter方法完成赋值                
+
+
+## 缓存
+
+beanDefinitionMap: 用来存BeanDefinitionMap, 用来存储配置信息
+
+factoryBeanObjectCache: 用来存原生Bean的Map, 存储反射创建出的实际的对象
+
+factoryBeanInstanceCache: 用来存BeanWrapper的Map, 存储原生Bean的包装类
+
+
+# AOP
+![](https://image.devilwst.top/imgs/2023/11/358726a888879319.png)
+
+AOP其实就两个最核心的累分别是MethodInterceptor, MethodInvocation
+其他的都是边边角角起辅助作用的
+
+(其实这两个都是接口，比如MethodBeforeAdviceInterceptor， after,throwing都是实现了MethodInterceptor这个接口)
+
+MethodInterceptor有一个方法叫做invoke()
+MethodInvocation 有一个proceed() 方法
+
+proceed() 串起了整个Interceptor调用链
+
+
+# MVC
+![](https://image.devilwst.top/imgs/2023/12/7f0cab4c2935d9a7.png)
+
+
 
