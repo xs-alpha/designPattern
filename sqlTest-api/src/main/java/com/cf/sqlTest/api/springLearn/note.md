@@ -135,6 +135,20 @@ MethodInvocation 有一个proceed() 方法
 
 proceed() 串起了整个Interceptor调用链
 
+## 备注
+我标注的几个书签点
+1.AOP入口
+AbstractAutowireCapableBeanFactory的initializeBean方法的wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+
+2.如果有advice就创建代理
+AbstractAutoProxyCreator类的wrapIfNecessary方法的 getAdvicesAndAdvisorsForBean和createProxy
+
+3.jdk动态代理调用proceed
+JdkDynamicAopProxy类的invoke方法的 invocation.proceed();
+
+4.反射调用目标织入方法
+AbstractAspectJAdvice类的invokeAdviceMethodWithGivenArgs方法的 this.aspectJAdviceMethod.invoke(this.aspectInstanceFactory.getAspectInstance(), actualArgs);  
+这行代码的底层调用的是Method的invoke方法
 
 # MVC
 ![](https://image.devilwst.top/imgs/2023/12/7f0cab4c2935d9a7.png)
