@@ -153,5 +153,18 @@ AbstractAspectJAdvice类的invokeAdviceMethodWithGivenArgs方法的 this.aspectJ
 # MVC
 ![](https://image.devilwst.top/imgs/2023/12/7f0cab4c2935d9a7.png)
 
+Dispacher Servlet init方法初始化九大组件
 
+DispatcherServlet 的 doService方法
+    getHandler拿到HandlerMapping chain
+    getHandlerAdapter(handerMapping)
+    adapter.handle() 返回ModleAndView
+    最后调用processDispatchResult方法调用view.render()方法通过response输出到浏览器
+
+## 我标注的几个书签点
+1. HttpServletBean的init方法 
+
+2. DispatcherServlet的initStrategies方法 初始化九大组件
+
+3. DispatcherServlet的doDispatch
 
