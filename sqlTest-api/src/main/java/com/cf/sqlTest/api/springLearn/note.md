@@ -171,7 +171,8 @@ DispatcherServlet 的 doService方法
 
 ---
 
-# 事物
+# 数据库
+## 事物
 传播等级
 ![](https://image.devilwst.top/imgs/2023/12/0074dd37f8a4e696.png)
 隔离级别
@@ -179,6 +180,9 @@ DispatcherServlet 的 doService方法
 执行流程
 ![](https://image.devilwst.top/imgs/2023/12/b66f59b97c269029.png)
 
+
+## mybatis
+![](https://image.devilwst.top/imgs/2023/12/a3d64559b5684528.png)
 
 
 
