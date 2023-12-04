@@ -168,3 +168,43 @@ DispatcherServlet 的 doService方法
 
 3. DispatcherServlet的doDispatch
 
+
+---
+
+# 事物
+传播等级
+![](https://image.devilwst.top/imgs/2023/12/0074dd37f8a4e696.png)
+隔离级别
+![](https://image.devilwst.top/imgs/2023/12/370ebefd9ea85a05.png)
+执行流程
+![](https://image.devilwst.top/imgs/2023/12/b66f59b97c269029.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
