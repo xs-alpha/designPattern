@@ -22,32 +22,7 @@ spring:
       max-open-prepared-statements: 20
       max-pool-prepared-statement-per-connection-size: 20
       filters: stat
-    dynamic:
-      datasource:
-        master:
-          url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-          username: root
-          password: root
-          driver-class-name: com.mysql.jdbc.Driver
-      druid:
-        initial-size: 10
-        min-idle: 100
-        max-active: 2000
-        max-wait: 60000
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: select 1 from dual
-        test-while-idle: true
-        test-on-borrow: true
-        test-on-return: false
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        filters:
-          stat:
-            enabled: true
-            log-slow-sql: true
-            merge-sql: true
-      strict: true
+
 
 
 #jwt 秘钥

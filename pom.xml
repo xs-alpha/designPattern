@@ -224,11 +224,7 @@
 				<artifactId>iot20180120</artifactId>
 				<version>3.0.6</version>
 			</dependency>
-			<dependency>
-				<groupId>com.baomidou</groupId>
-				<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-				<version>3.5.1</version>
-			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
