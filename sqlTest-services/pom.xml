@@ -16,6 +16,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<version>2.3.3.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>com.cf</groupId>
 			<artifactId>sqlTest-dao</artifactId>
 			<version>${parent.version}</version>

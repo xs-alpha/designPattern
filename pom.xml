@@ -20,7 +20,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
+<!--		<version>2.3.1.RELEASE</version>-->
+		<version>2.7.9</version>
 		<relativePath/>
 	</parent>
 
@@ -57,7 +58,11 @@
 
 	<dependencyManagement>
 		<dependencies>
-
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-webflux</artifactId>
+				<version>2.7.9</version>
+			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
