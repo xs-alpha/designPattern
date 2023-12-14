@@ -92,21 +92,24 @@ public class BdChatController {
                 .retrieve();
 
         Flux<String> stringFlux = prePost.bodyToFlux(String.class);
+        StringBuilder sb = new StringBuilder();
         return stringFlux.mapNotNull(string->{
             ChatCompletion answer = JSON.parseObject(string, ChatCompletion.class);
             if (answer.isEnd()){
+                saveResponseToDatabase(sb.toString());
                 return "\n\n\nanswer finished=======";
             }
             String result = answer.getResult();
+            sb.append(result);
             return result;
-        }).cache();
+        });
 
     }
 
     private void saveResponseToDatabase(String response) {
         // 实现将内容保存到数据库的逻辑
         // 这里是示例，你需要实现具体的数据库保存操作
-        System.out.println("Saving-to database: " + response);
+        System.out.println("\n\n\n\nSaving-to database: " + response);
     }
     public static String extractJSON(String input) {
         int startIndex = input.indexOf("{");
