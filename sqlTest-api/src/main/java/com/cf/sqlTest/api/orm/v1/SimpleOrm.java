@@ -20,8 +20,6 @@ public class SimpleOrm {
         member.setAge(34);
         List<Member> select = (List<Member>) select(member);
         System.out.println(select);
-
-
     }
 
     public static List<?> select(Object condition) {
@@ -33,7 +31,7 @@ public class SimpleOrm {
         Class<?> entityClass = condition.getClass();
         try {
             // 1.加载驱动类
-            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Class.forName("com.mysql.cj.jdbc.Driver");
             // 2.建立连接
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai", "root", "root");
             StringBuilder sql = new StringBuilder();
@@ -122,3 +120,19 @@ public class SimpleOrm {
         return new ArrayList<>();
     }
 }
+/**
+ * Class.forName("com.mysql.cj.jdbc.Driver") 是 Java 中加载驱动程序的方式之一，用于加载并注册 MySQL 数据库的 JDBC 驱动程序。
+ * <p>
+ * 具体地说，这行代码会触发以下几个步骤：
+ * <p>
+ * 类加载：
+ * <p>
+ * Class.forName() 方法用于加载指定名称的类。在这里，它加载并返回一个代表 com.mysql.cj.jdbc.Driver 类的 Class 对象。
+ * 静态块执行：
+ * <p>
+ * 当调用 Class.forName() 方法加载类时，如果目标类中有静态块（static块），这些静态块会被执行。在 JDBC 驱动程序中，通常在静态块中进行一些初始化工作，如注册驱动程序到 DriverManager 中。
+ * 注册驱动：
+ * <p>
+ * 在 MySQL 的 JDBC 驱动程序中，静态块中一般会包含驱动程序的注册，即调用 DriverManager.registerDriver() 方法注册数据库驱动程序。
+ * 注册驱动的目的是将驱动程序加载到 DriverManager 中，使得后续可以通过 JDBC URL 连接到相应的数据库。
+ */
