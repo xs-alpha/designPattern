@@ -97,7 +97,42 @@ public class BdChatController {
             ChatCompletion answer = JSON.parseObject(string, ChatCompletion.class);
             if (answer.isEnd()){
                 saveResponseToDatabase(sb.toString());
-                return "\n\n\nanswer finished=======";
+                return "finished";
+            }
+            String result = answer.getResult();
+            sb.append(result);
+            return result;
+        });
+
+    }
+
+    @PostMapping(value = "/chat")
+    public Flux<String> chatStream(HttpServletResponse response, @RequestBody List<com.cf.sqlTest.api.controller.BdReq> req) {
+        response.setContentType("text/event-stream;charset=utf-8");
+        final String accessToken = "24.35806b93c8906cd916475822dd708532.2592000.1705037831.282335-44888395";
+        final String url = "/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro?access_token=" + accessToken;
+
+        JSONArray msgList = new JSONArray();
+        msgList.addAll(req);
+
+        JSONObject body = new JSONObject();
+        body.put("messages", msgList);
+        body.put("stream", true);
+
+
+        WebClient.ResponseSpec prePost = webClient.post()
+                .uri(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(body))
+                .retrieve();
+
+        Flux<String> stringFlux = prePost.bodyToFlux(String.class);
+        StringBuilder sb = new StringBuilder();
+        return stringFlux.mapNotNull(string->{
+            ChatCompletion answer = JSON.parseObject(string, ChatCompletion.class);
+            if (answer.isEnd()){
+                saveResponseToDatabase(sb.toString());
+                return "finished";
             }
             String result = answer.getResult();
             sb.append(result);
